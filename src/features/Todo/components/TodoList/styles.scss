@@ -1,0 +1,27 @@
+.todo__list{
+    & li{
+        font-weight: 500;
+        font-size: 1.2rem;
+        cursor: pointer;
+        width: 60px;
+    }
+    & li.completed{
+        text-decoration: line-through;
+        opacity: .4;
+    }
+}
+
+.todo__box{
+    display: flex;
+    column-gap: 1rem;
+    margin-bottom: .8rem;
+    button{
+        cursor: pointer;
+        font-size: .7rem;
+        border: none;
+        outline: none;
+        border-radius: 4px;
+        color: #fff;
+        background: #da3c3c;
+    }
+}
