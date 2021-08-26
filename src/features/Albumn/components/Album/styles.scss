@@ -1,0 +1,12 @@
+.album{
+    &__img{
+        width: 250px;
+        height: 350px;
+        object-fit: cover;
+    }
+    &__title{
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin: 0;
+    }
+}
