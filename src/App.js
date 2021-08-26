@@ -2,6 +2,8 @@ import logo from './logo.svg';
 import './App.css';
 import TodoFeatures from './features/Todo';
 import AlbumFeature from './features/Albumn';
+import ColorBox from './components/ColorBox';
+import Counter from './components/Counter';
 
 function App() {
   const Thinh = {
@@ -12,7 +14,9 @@ function App() {
   return (
     <div className="App">
       {/* <TodoFeatures /> */}
-      <AlbumFeature />
+      {/* <AlbumFeature /> */}
+      <ColorBox />
+      <Counter />
     </div>
   );
 }
