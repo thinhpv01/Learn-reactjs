@@ -1,0 +1,46 @@
+.todo{
+    &__title{
+        font-size: 1.5rem;
+        font-weight: 500;
+        color: #d84545;
+    }
+    &__input{
+        border: 1.5px solid #999;
+        display: inline-block !important; 
+        border-radius: 3px;
+        outline: none;
+        padding: .5rem;
+        margin: 0 1rem;
+        transition: .4s;
+        &:focus{
+            border-color: #36dcdc;
+        }
+    }
+    &__btn-add{
+        display: inline-block !important;
+        padding: .53rem 1.5rem;
+        border: none;
+        outline: none;
+        color: #fff;
+        background: #36dcdc;
+        border-radius: 5px;
+        transition: .4s;
+        &:hover{
+            background: #3ebdbd;
+        }
+    }
+    &__btn-show{
+        margin: 1rem .5rem 0;
+        display: inline-block !important;
+        padding: .53rem 1.5rem;
+        border: none;
+        outline: none;
+        color: #fff;
+        border-radius: 5px;
+        background: #2b96e2;
+        transition: .4s;
+        &:hover{
+            background:#1d81c9;
+        }
+    }
+}

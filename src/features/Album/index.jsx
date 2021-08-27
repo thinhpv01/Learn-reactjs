@@ -27,7 +27,7 @@ function AlbumFeature(props) {
 
     return (
         <div>
-            <h2 style={{marginLeft: '2rem'}}>Maybe You Like</h2>
+            <h2 style={{marginLeft: '2rem', color: '#e85959'}}>Maybe You Like</h2>
             <AlbumList albumList={albumList}/>
         </div>
     );

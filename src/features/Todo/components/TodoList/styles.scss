@@ -1,4 +1,5 @@
 .todo__list{
+    list-style: none;
     & li{
         font-weight: 500;
         font-size: 1.2rem;
@@ -23,5 +24,9 @@
         border-radius: 4px;
         color: #fff;
         background: #da3c3c;
+        transition: .4s;
+        &:hover{
+            background: #bb2828;
+        }
     }
 }
