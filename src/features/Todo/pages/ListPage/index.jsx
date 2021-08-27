@@ -2,8 +2,8 @@ import React, { useEffect, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import TodoList from '../../components/TodoList';
 import './styles.scss';
-import { useHistory, useLocation, useParams, useRouteMatch } from 'react-router-dom';
-import queryString, { stringify } from "query-string"
+import { useHistory, useLocation, useParams, useRouteMatch } from "react-router-dom";
+import queryString, { stringify } from 'query-string';
 
 ListPage.propTypes = {
     
