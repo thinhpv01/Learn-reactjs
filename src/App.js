@@ -3,24 +3,29 @@ import TodoFeatures from './features/Todo';
 import Album from './features/Album';
 import { NavLink, Redirect, Route, Switch, useHistory, useLocation, useParams, useRouteMatch } from 'react-router-dom';
 import NotFound from './components/NotFound';
+import { useEffect } from 'react';
+import productApi from './api/productApi';
 
 function App() {
-  const Thinh = {
-    name: 'Pham Van Thinh',
-    age: '20',
-    male: true,
-  };
-  const history = useHistory();
-  console.log(history);
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const productList = await productApi.getAll({ _limit: 10 });
+      console.log(productList);
+    };
 
-  const location = useLocation();
-  console.log(location);
+    fetchProducts();
+  }, []);
+  // const history = useHistory();
+  // console.log(history);
 
-  const params = useParams();
-  console.log(params);
+  // const location = useLocation();
+  // console.log(location);
 
-  const rou = useRouteMatch();
-  console.log(rou);
+  // const params = useParams();
+  // console.log(params);
+
+  // const rou = useRouteMatch();
+  // console.log(rou);
 
   return (
     <div className="App">
