@@ -6,6 +6,7 @@ import NotFound from './components/NotFound';
 import { useEffect } from 'react';
 import productApi from './api/productApi';
 import CounterFeature from './features/Counter/index.';
+import CounterFeature1 from 'features/Counter/index1';
 
 function App() {
     useEffect(() => {
@@ -46,7 +47,7 @@ function App() {
                 <Redirect from="/home" to="/" exact />
                 <Redirect from="/post-list/:postId" to="/posts/:postId" exact />
 
-                <Route path="/" component={CounterFeature} exact />
+                <Route path="/" component={CounterFeature1} exact />
                 <Route path="/todos" component={TodoFeatures} />
                 <Route path="/album" component={Album} />
                 <Route component={NotFound} />
