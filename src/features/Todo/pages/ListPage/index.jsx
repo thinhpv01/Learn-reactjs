@@ -4,6 +4,7 @@ import TodoList from '../../components/TodoList';
 import './styles.scss';
 import { useHistory, useLocation, useParams, useRouteMatch } from 'react-router-dom';
 import queryString, { stringify } from 'query-string';
+import TodoForm from '../../components/TodoForm';
 
 ListPage.propTypes = {};
 
@@ -117,8 +118,21 @@ function ListPage(props) {
         return todoList.filter((todo) => filterStatus === 'all' || filterStatus === todo.status);
     }, [todoList, filterStatus]);
 
+    const handleTodoFormSubmit = (values) => {
+        const newTodo = {
+            id: setId(todoList),
+            title: values.title,
+            status: 'new',
+        };
+        const newTodoList = [...todoList, newTodo];
+        setTodoList(newTodoList);
+    };
+
     return (
         <div className="todo">
+            <h3>Todo Form</h3>
+            <TodoForm onSubmit={handleTodoFormSubmit} />
+
             <h3 className="todo__title">Todo List</h3>
             <TodoList todoList={renderedTodoList} onTodoClick={onTodoClick} removeClick={removeClick} />
             <input style={{ display: 'block' }} className="todo__input" type="text" placeholder="Add Item"></input>

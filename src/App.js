@@ -5,55 +5,55 @@ import { NavLink, Redirect, Route, Switch, useHistory, useLocation, useParams, u
 import NotFound from './components/NotFound';
 import { useEffect } from 'react';
 import productApi from './api/productApi';
+import CounterFeature from './features/Counter/index.';
 
 function App() {
-  useEffect(() => {
-    const fetchProducts = async () => {
-      const productList = await productApi.getAll({ _limit: 10 });
-      console.log(productList);
-    };
+    useEffect(() => {
+        const fetchProducts = async () => {
+            const productList = await productApi.getAll({ _limit: 10 });
+        };
 
-    fetchProducts();
-  }, []);
-  // const history = useHistory();
-  // console.log(history);
+        fetchProducts();
+    }, []);
+    // const history = useHistory();
+    // console.log(history);
 
-  // const location = useLocation();
-  // console.log(location);
+    // const location = useLocation();
+    // console.log(location);
 
-  // const params = useParams();
-  // console.log(params);
+    // const params = useParams();
+    // console.log(params);
 
-  // const rou = useRouteMatch();
-  // console.log(rou);
+    // const rou = useRouteMatch();
+    // console.log(rou);
 
-  return (
-    <div className="App">
-      <p className="header">Header</p>
-      <p className="nav__link">
-        <NavLink to="/" exact>
-          Home
-        </NavLink>
-      </p>
-      <p className="nav__link">
-        <NavLink to="/todos">Todos</NavLink>
-      </p>
-      <p className="nav__link">
-        <NavLink to="/album">Album</NavLink>
-      </p>
+    return (
+        <div className="App">
+            <p className="header">Header</p>
+            <p className="nav__link">
+                <NavLink to="/" exact>
+                    Home
+                </NavLink>
+            </p>
+            <p className="nav__link">
+                <NavLink to="/todos">Todos</NavLink>
+            </p>
+            <p className="nav__link">
+                <NavLink to="/album">Album</NavLink>
+            </p>
 
-      <Switch>
-        <Redirect from="/home" to="/" exact />
-        <Redirect from="/post-list/:postId" to="/posts/:postId" exact />
+            <Switch>
+                <Redirect from="/home" to="/" exact />
+                <Redirect from="/post-list/:postId" to="/posts/:postId" exact />
 
-        <Route path="/" component={TodoFeatures} exact />
-        <Route path="/todos" component={TodoFeatures} />
-        <Route path="/album" component={Album} />
-        <Route component={NotFound} />
-      </Switch>
-      <p className="footer">Footer</p>
-    </div>
-  );
+                <Route path="/" component={CounterFeature} exact />
+                <Route path="/todos" component={TodoFeatures} />
+                <Route path="/album" component={Album} />
+                <Route component={NotFound} />
+            </Switch>
+            <p className="footer">Footer</p>
+        </div>
+    );
 }
 
 export default App;
