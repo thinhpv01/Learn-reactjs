@@ -28,6 +28,7 @@ function InputField(props) {
                     onChange={onChange}
                     value={value}
                     variant="outlined"
+                    margin="normal"
                     error={!!hasError}
                     helperText={errors[name]?.message}
                 />

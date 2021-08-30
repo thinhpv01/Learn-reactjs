@@ -1,18 +1,4 @@
 .App {
-  padding: 1rem 2rem;
-}
-
-.header{
-  font-size: 1.2rem;
-  font-weight: 500;
-  color: #29aed3;
-  padding-bottom: 4rem;
-}
-.footer{
-  font-size: 1.2rem;
-  font-weight: 500;
-  color: #24791d;
-  padding-top: 4rem;
 }
 
 .App-logo {
@@ -39,26 +25,6 @@
 
 .App-link {
   color: #61dafb;
-}
-
-.nav__link{
-  display: inline-block;
-  margin-right: 1rem;
-}
-
-.nav__link a{
-  text-decoration: none;
-  color: #e74d3e;
-  font-weight: 500;
-  transition: .4s;
-}
-
-.nav__link a:hover{
-  color: #3fc8ee;
-}
-
-.nav__link a.active{
-  color: #3fc8ee;
 }
 
 @keyframes App-logo-spin {

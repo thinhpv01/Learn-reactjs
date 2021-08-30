@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import productApi from './api/productApi';
 import CounterFeature from './features/Counter/index.';
 import CounterFeature1 from 'features/Counter/index1';
+import Header from 'components/Header';
 
 function App() {
     useEffect(() => {
@@ -30,18 +31,7 @@ function App() {
 
     return (
         <div className="App">
-            <p className="header">Header</p>
-            <p className="nav__link">
-                <NavLink to="/" exact>
-                    Home
-                </NavLink>
-            </p>
-            <p className="nav__link">
-                <NavLink to="/todos">Todos</NavLink>
-            </p>
-            <p className="nav__link">
-                <NavLink to="/album">Album</NavLink>
-            </p>
+            <Header />
 
             <Switch>
                 <Redirect from="/home" to="/" exact />
@@ -52,7 +42,6 @@ function App() {
                 <Route path="/album" component={Album} />
                 <Route component={NotFound} />
             </Switch>
-            <p className="footer">Footer</p>
         </div>
     );
 }
