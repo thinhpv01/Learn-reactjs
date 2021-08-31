@@ -1,13 +1,23 @@
 import './App.css';
 import TodoFeatures from './features/Todo';
 import Album from './features/Album';
-import { NavLink, Redirect, Route, Switch, useHistory, useLocation, useParams, useRouteMatch } from 'react-router-dom';
+import {
+    NavLink,
+    Redirect,
+    Route,
+    Switch,
+    useHistory,
+    useLocation,
+    useParams,
+    useRouteMatch,
+} from 'react-router-dom';
 import NotFound from './components/NotFound';
 import { useEffect } from 'react';
 import productApi from './api/productApi';
 import CounterFeature from './features/Counter/index.';
 import CounterFeature1 from 'features/Counter/index1';
 import Header from 'components/Header';
+import { Button } from '@material-ui/core';
 
 function App() {
     useEffect(() => {
@@ -32,7 +42,6 @@ function App() {
     return (
         <div className="App">
             <Header />
-
             <Switch>
                 <Redirect from="/home" to="/" exact />
                 <Redirect from="/post-list/:postId" to="/posts/:postId" exact />

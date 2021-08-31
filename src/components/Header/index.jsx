@@ -16,6 +16,9 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { useState } from 'react';
 import Register from 'features/Auth/Component/Register';
+import CloseIcon from '@material-ui/icons/Close';
+import Login from 'features/Auth/Component/Login';
+import { Box } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -35,12 +38,24 @@ const useStyles = makeStyles((theme) => ({
             color: '#3ce058',
         },
     },
+    dialog: {
+        position: 'relative',
+    },
+    buttonClose: {
+        position: 'absolute',
+        top: theme.spacing(2),
+        right: theme.spacing(2),
+        cursor: 'pointer',
+        fontSize: '2rem',
+        color: theme.palette.grey[500],
+    },
 }));
 
 export default function Header() {
     const classes = useStyles();
 
     const [open, setOpen] = useState(false);
+    const [mode, setMode] = useState('login');
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -73,6 +88,7 @@ export default function Header() {
             </AppBar>
 
             <Dialog
+                className={classes.dialog}
                 disableEscapeKeyDown
                 open={open}
                 onClose={handleClose}
@@ -84,12 +100,29 @@ export default function Header() {
                 aria-labelledby="form-dialog-title"
             >
                 <DialogContent>
-                    <Register />
+                    {mode == 'login' && (
+                        <>
+                            <Login closeDialog={handleClose} />
+                            <Box textAlign="center">
+                                <Button color="primary" onClick={() => setMode('register')}>
+                                    Don't have an Account? Register here.
+                                </Button>
+                            </Box>
+                        </>
+                    )}
+                    {mode == 'register' && (
+                        <>
+                            <Register closeDialog={handleClose} />
+                            <Box textAlign="center">
+                                <Button color="primary" onClick={() => setMode('login')}>
+                                    already have an Account? Login here.
+                                </Button>
+                            </Box>
+                        </>
+                    )}
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose} color="primary">
-                        Cancel
-                    </Button>
+                    <CloseIcon className={classes.buttonClose} onClick={handleClose} />
                 </DialogActions>
             </Dialog>
         </div>
