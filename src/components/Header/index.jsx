@@ -1,24 +1,22 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { Box, Menu, MenuItem } from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import CodeIcon from '@material-ui/icons/Code';
-import { Link, NavLink } from 'react-router-dom';
-import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import { useState } from 'react';
-import Register from 'features/Auth/Component/Register';
+import IconButton from '@material-ui/core/IconButton';
+import { makeStyles } from '@material-ui/core/styles';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import CloseIcon from '@material-ui/icons/Close';
+import CodeIcon from '@material-ui/icons/Code';
 import Login from 'features/Auth/Component/Login';
-import { Box } from '@material-ui/core';
+import Register from 'features/Auth/Component/Register';
+import { logout } from 'features/Auth/userSlice';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, NavLink } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -53,6 +51,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Header() {
     const classes = useStyles();
+    const loggedInUser = useSelector((state) => state.user.current);
+    const loggedIn = !!loggedInUser.id;
 
     const [open, setOpen] = useState(false);
     const [mode, setMode] = useState('login');
@@ -63,6 +63,21 @@ export default function Header() {
 
     const handleClose = () => {
         setOpen(false);
+    };
+
+    const [anchorEl, setAnchorEl] = React.useState(null);
+
+    const handleUserClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleMenuClose = () => {
+        setAnchorEl(null);
+    };
+    const dispatch = useDispatch();
+    const handleLogoutClick = () => {
+        dispatch(logout());
+        setAnchorEl(null);
     };
 
     return (
@@ -81,9 +96,35 @@ export default function Header() {
                     <NavLink to="/album" className={classes.link}>
                         <Button color="inherit">Album</Button>
                     </NavLink>
-                    <Button color="inherit" onClick={handleClickOpen}>
-                        Register
-                    </Button>
+                    {!loggedIn && (
+                        <Button color="inherit" onClick={handleClickOpen}>
+                            Login
+                        </Button>
+                    )}
+                    {loggedIn && (
+                        <IconButton color="inherit" onClick={handleUserClick}>
+                            <AccountCircleIcon />
+                        </IconButton>
+                    )}
+                    <Menu
+                        id="simple-menu"
+                        anchorEl={anchorEl}
+                        keepMounted
+                        open={Boolean(anchorEl)}
+                        onClose={handleMenuClose}
+                        anchorOrigin={{
+                            vertical: 'bottom',
+                            horizontal: 'right',
+                        }}
+                        transformOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right',
+                        }}
+                        getContentAnchorEl={null}
+                    >
+                        <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+                        <MenuItem onClick={handleLogoutClick}>Logout</MenuItem>
+                    </Menu>
                 </Toolbar>
             </AppBar>
 

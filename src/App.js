@@ -18,15 +18,9 @@ import CounterFeature from './features/Counter/index.';
 import CounterFeature1 from 'features/Counter/index1';
 import Header from 'components/Header';
 import { Button } from '@material-ui/core';
+import ProductsFeature from 'features/Products';
 
 function App() {
-    useEffect(() => {
-        const fetchProducts = async () => {
-            const productList = await productApi.getAll({ _limit: 10 });
-        };
-
-        fetchProducts();
-    }, []);
     // const history = useHistory();
     // console.log(history);
 
@@ -49,6 +43,7 @@ function App() {
                 <Route path="/" component={CounterFeature1} exact />
                 <Route path="/todos" component={TodoFeatures} />
                 <Route path="/album" component={Album} />
+                <Route path="/products" component={ProductsFeature} />
                 <Route component={NotFound} />
             </Switch>
         </div>

@@ -1,6 +1,18 @@
 .App {
 }
 
+.MuiPagination-ul{
+  justify-content: center;
+}
+
+nav.MuiPagination-root{
+  margin-top: 2rem;
+}
+
+html{
+  background: #f4f4f4;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
