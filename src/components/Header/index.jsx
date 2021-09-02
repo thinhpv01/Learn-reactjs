@@ -90,6 +90,9 @@ export default function Header() {
                             EZ Shop
                         </Link>
                     </Typography>
+                    <NavLink to="/products" className={classes.link}>
+                        <Button color="inherit">Products</Button>
+                    </NavLink>
                     <NavLink to="/todos" className={classes.link}>
                         <Button color="inherit">Todos</Button>
                     </NavLink>

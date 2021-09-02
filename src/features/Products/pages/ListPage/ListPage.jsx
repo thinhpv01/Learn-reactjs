@@ -7,6 +7,9 @@ import { useState } from 'react';
 import { Pagination, Skeleton } from '@material-ui/lab';
 import ProductSkeletonList from 'features/Products/components/ProductSkeletonList';
 import ProductList from 'features/Products/components/ProductList';
+import ProductSort from 'features/Products/components/ProductSort';
+import ProductFilters from 'features/Products/components/ProductFilters';
+import FilterViewer from 'features/Products/components/FilterViewer';
 
 ListPage.propTypes = {};
 
@@ -32,12 +35,12 @@ function ListPage(props) {
     const [filters, setFilters] = useState({
         _page: 1,
         _limit: 9,
+        _sort: 'salePrice:ASC',
     });
     useEffect(() => {
         (async () => {
             try {
                 const { data, pagination } = await productApi.getAll(filters);
-                console.log(pagination);
                 setProductList(data);
                 setPagination(pagination);
                 console.log(data);
@@ -53,15 +56,35 @@ function ListPage(props) {
             _page: page,
         }));
     };
+    const handleSortChange = (newValue) => {
+        setFilters((prevFilter) => ({
+            ...prevFilter,
+            _sort: newValue,
+        }));
+    };
+    const handleFiltersChange = (newFilters) => {
+        setFilters((prevFilter) => ({
+            ...prevFilter,
+            ...newFilters,
+        }));
+    };
+
+    const setNewFilters = (newFilters) => {
+        setFilters(newFilters);
+    };
     return (
         <Box>
             <Container>
                 <Grid container spacing={1}>
                     <Grid item className={classes.left}>
-                        <Paper elevation={0}>Left colum</Paper>
+                        <Paper elevation={0}>
+                            <ProductFilters filters={filters} onChange={handleFiltersChange} />
+                        </Paper>
                     </Grid>
                     <Grid item className={classes.right}>
                         <Paper elevation={0}>
+                            <ProductSort currentSort={filters._sort} onChange={handleSortChange} />
+                            <FilterViewer filters={filters} onChange={setNewFilters} />
                             {loading ? (
                                 <ProductSkeletonList length={9} />
                             ) : (
