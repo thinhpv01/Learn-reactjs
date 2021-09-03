@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Box, Container, makeStyles, Grid, Paper } from '@material-ui/core';
+import { Box, Container, makeStyles, Grid, Paper, LinearProgress } from '@material-ui/core';
 import ProductThumbnail from 'features/Products/components/ProductThumbnail';
 import { Route, Switch, useRouteMatch } from 'react-router';
 import useProductDetail from 'features/Products/hooks/hooksProductDetail';
@@ -10,6 +10,8 @@ import ProductMenu from 'features/Products/components/ProductMenu';
 import ProductDescription from 'features/Products/components/ProductDescription';
 import ProductAdditional from 'features/Products/components/ProductAdditional';
 import ProductReviews from 'features/Products/components/ProductReview';
+import { useDispatch } from 'react-redux';
+import { addToCart } from 'features/Cart/CartSlice';
 
 DetailPage.propTypes = {};
 
@@ -24,6 +26,12 @@ const useStyles = makeStyles((theme) => ({
         flex: '1 1 0',
         padding: '.75rem',
     },
+    loading: {
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+    },
 }));
 
 function DetailPage(props) {
@@ -33,11 +41,21 @@ function DetailPage(props) {
         url,
     } = useRouteMatch();
     const { product, loading } = useProductDetail(productId);
+    const dispatch = useDispatch();
     if (loading) {
-        return <Box>Loading</Box>;
+        return (
+            <Box className={classes.loading}>
+                <LinearProgress />
+            </Box>
+        );
     }
-    const handleAddToCart = (formValues) => {
-        console.log('Form submit: ', formValues);
+    const handleAddToCart = ({ quantity }) => {
+        const action = addToCart({
+            id: product.id,
+            product,
+            quantity,
+        });
+        dispatch(action);
     };
     return (
         <Box>

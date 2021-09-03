@@ -1,24 +1,12 @@
-import './App.css';
-import TodoFeatures from './features/Todo';
-import Album from './features/Album';
-import {
-    NavLink,
-    Redirect,
-    Route,
-    Switch,
-    useHistory,
-    useLocation,
-    useParams,
-    useRouteMatch,
-} from 'react-router-dom';
-import NotFound from './components/NotFound';
-import { useEffect } from 'react';
-import productApi from './api/productApi';
-import CounterFeature from './features/Counter/index.';
-import CounterFeature1 from 'features/Counter/index1';
 import Header from 'components/Header';
-import { Button } from '@material-ui/core';
+import CartFeature from 'features/Cart';
+import CounterFeature1 from 'features/Counter/index1';
 import ProductsFeature from 'features/Products';
+import { Redirect, Route, Switch } from 'react-router-dom';
+import './App.css';
+import NotFound from './components/NotFound';
+import Album from './features/Album';
+import TodoFeatures from './features/Todo';
 
 function App() {
     // const history = useHistory();
@@ -44,6 +32,7 @@ function App() {
                 <Route path="/todos" component={TodoFeatures} />
                 <Route path="/album" component={Album} />
                 <Route path="/products" component={ProductsFeature} />
+                <Route path="/cart" component={CartFeature} />
                 <Route component={NotFound} />
             </Switch>
         </div>
