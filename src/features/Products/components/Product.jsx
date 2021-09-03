@@ -3,18 +3,25 @@ import PropTypes from 'prop-types';
 import { Skeleton } from '@material-ui/lab';
 import { Box, Typography } from '@material-ui/core';
 import { THUMBNAIL_PLACEHOLDER, STATIC_HOST } from 'constants/index';
+import { useHistory } from 'react-router';
+import { formatPrice } from 'utils';
 
 Product.propTypes = {
     product: PropTypes.object,
 };
 
 function Product({ product }) {
+    const history = useHistory();
     const thumbnail = product.thumbnail
         ? `${STATIC_HOST}${product.thumbnail.url}`
         : THUMBNAIL_PLACEHOLDER;
+
+    const handleClick = () => {
+        history.push(`/products/${product.id}`);
+    };
     return (
         <div>
-            <Box padding={1}>
+            <Box padding={1} onClick={handleClick}>
                 <Box>
                     <img
                         src={thumbnail}
@@ -27,10 +34,7 @@ function Product({ product }) {
                 <Typography variant="body2">{product.name}</Typography>
                 <Typography variant="body2">
                     <Box component="span" fontSize="16px" fontWeight="bold" mr={1}>
-                        {product.salePrice.toLocaleString('vi-VN', {
-                            style: 'currency',
-                            currency: 'VND',
-                        })}
+                        {formatPrice(product.salePrice)}
                     </Box>
                     {product.promotionPercent > 0 && ` -${product.promotionPercent}%`}
                 </Typography>
